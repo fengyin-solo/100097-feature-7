@@ -108,10 +108,22 @@ class ResultEntry(BaseModel):
     field_1: str | None = None  # 关联任务
     field_2: str | None = None  # 检测项目
     field_3: str | None = None  # 检测值
-    field_4: str | None = None  # 检出限
-    field_5: str | None = None  # 评价标准
-    field_6: str | None = None  # 判定结论
+    field_4: str | None = None  # 评价标准
+    field_5: str | None = None  # 判定结论
+    field_6: str | None = None  # 判定说明
     field_7: str | None = None  # 结果状态
+
+class JudgeRuleEntry(BaseModel):
+    """判定规则明细结构。"""
+
+    field_0: str | None = None  # 规则编号
+    field_1: str | None = None  # 检测项目
+    field_2: str | None = None  # 评价标准
+    field_3: str | None = None  # 检出限
+    field_4: str | None = None  # 限量值
+    field_5: str | None = None  # 单位
+    field_6: str | None = None  # 版本号
+    field_7: str | None = None  # 规则状态
 
 class ReportEntry(BaseModel):
     """检测报告明细结构。"""

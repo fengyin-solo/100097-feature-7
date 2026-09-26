@@ -7,6 +7,7 @@ const Task = () => import('@/views/task/index.vue')
 const Method = () => import('@/views/method/index.vue')
 const Instrument = () => import('@/views/instrument/index.vue')
 const Standard = () => import('@/views/standard/index.vue')
+const Judgerule = () => import('@/views/judgerule/index.vue')
 const Result = () => import('@/views/result/index.vue')
 const Report = () => import('@/views/report/index.vue')
 const Boundary = () => import('@/views/boundary/index.vue')
@@ -32,6 +33,7 @@ const router = createRouter({
     { path: '/method', name: 'method', component: Method },
     { path: '/instrument', name: 'instrument', component: Instrument },
     { path: '/standard', name: 'standard', component: Standard },
+    { path: '/judgerule', name: 'judgerule', component: Judgerule },
     { path: '/result', name: 'result', component: Result },
     { path: '/report', name: 'report', component: Report },
     { path: '/boundary', name: 'boundary', component: Boundary },

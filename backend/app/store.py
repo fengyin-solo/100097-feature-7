@@ -7,6 +7,7 @@ from __future__ import annotations
 from typing import Any
 
 from app.seed import SEED_ROWS
+from app.services.judgment import apply_judgment, has_measure, match_rule
 
 
 class Store:
@@ -14,6 +15,20 @@ class Store:
         self._tables: dict[str, list[dict[str, Any]]] = {
             name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
         }
+        self._bootstrap_judgments()
+
+    def _bootstrap_judgments(self) -> None:
+        """示例数据里的检测结果也走同一套判定引擎，保证起服务看到的结论与录入时一致。"""
+        rules = self.rows("judgerule")
+        for row in self.rows("result"):
+            row.setdefault("判定历史", [])
+            row.setdefault("判定快照", None)
+            if has_measure(row.get("检测值")):
+                rule = match_rule(rules, row.get("检测项目"), row.get("评价标准"))
+                apply_judgment(row, rule, reason="初始判定")
+            else:
+                row.setdefault("判定结论", "")
+                row["判定说明"] = "检测值未录入，录入后自动判定"
 
     def module_names(self) -> list[str]:
         return sorted(self._tables)
