@@ -8,6 +8,7 @@ const Method = () => import('@/views/method/index.vue')
 const Instrument = () => import('@/views/instrument/index.vue')
 const Standard = () => import('@/views/standard/index.vue')
 const Result = () => import('@/views/result/index.vue')
+const JudgeRule = () => import('@/views/judge-rule/index.vue')
 const Report = () => import('@/views/report/index.vue')
 const Boundary = () => import('@/views/boundary/index.vue')
 const Abnormal = () => import('@/views/abnormal/index.vue')
@@ -33,6 +34,7 @@ const router = createRouter({
     { path: '/instrument', name: 'instrument', component: Instrument },
     { path: '/standard', name: 'standard', component: Standard },
     { path: '/result', name: 'result', component: Result },
+    { path: '/judge-rule', name: 'judge-rule', component: JudgeRule },
     { path: '/report', name: 'report', component: Report },
     { path: '/boundary', name: 'boundary', component: Boundary },
     { path: '/abnormal', name: 'abnormal', component: Abnormal },

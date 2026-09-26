@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.routers import ROUTERS
+from app.services.result import ResultService
 from app.store import store
 
 app = FastAPI(title="实验室样品检测管理平台", version="1.0.0")
@@ -24,6 +25,12 @@ app.add_middleware(
 
 for module in ROUTERS:
     app.include_router(module.router)
+
+
+@app.on_event("startup")
+def judge_seed_results() -> None:
+    """启动时按当前判定规则给既有结果统一判一遍，结论快照冻结后供复核人查看。"""
+    ResultService().rejudge_all()
 
 
 @app.get("/api/health")
